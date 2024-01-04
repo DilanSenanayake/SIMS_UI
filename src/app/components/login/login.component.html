@@ -1,0 +1,45 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Student Information Management System</title>
+	</head>
+<body>
+	<h1>Student Information Management System</h1>
+<div class="container" *ngIf="!showSignup">
+    <form id="loginForm">
+        <label for="loginEmail">Email:</label>
+        <input type="text" id="loginEmail" name="loginEmail" required [(ngModel)]="loginUsername">
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required [(ngModel)]="loginPassword">
+
+        <button type="button" (click)="onLogin()">Login</button>
+    </form>
+
+    <div class="switch">
+        <p>Don't have an account? <a href="#" (click)="toggleForm()">Sign up</a></p>
+    </div>
+</div>
+
+<div class="container" *ngIf="showSignup" id="signupContainer">
+    <form id="signupForm">
+        <label for="signupUsername">Name:</label>
+        <input type="text" id="signupUsername" name="signupUsername" required>
+
+		<label for="signupEmail">Email:</label>
+        <input type="text" id="signupEmail" name="signupEmail" required>
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="signupPassword" required>
+
+        <button type="button" (click)="onSignUp()">Sign Up</button>
+    </form>
+
+    <div class="switch">
+        <p>Already have an account? <a href="#" (click)="toggleForm()">Login</a></p>
+    </div>
+</div>
+
+</body>
+</html>
