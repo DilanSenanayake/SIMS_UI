@@ -9,12 +9,14 @@
 <div class="container" *ngIf="!showSignup">
     <form id="loginForm">
         <label for="loginEmail">Email:</label>
-        <input type="text" id="loginEmail" name="loginEmail" required [(ngModel)]="loginUsername">
+        <input type="text" id="loginEmail" name="loginEmail" required [(ngModel)]="email">
 
         <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="loginPassword" required [(ngModel)]="loginPassword">
+        <input type="password" id="loginPassword" name="loginPassword" required [(ngModel)]="password">
 
         <button type="button" (click)="onLogin()">Login</button>
+
+        <div *ngIf="errorMessage" class="error-message"> {{ errorMessage }} </div>
     </form>
 
     <div class="switch">
@@ -25,15 +27,16 @@
 <div class="container" *ngIf="showSignup" id="signupContainer">
     <form id="signupForm">
         <label for="signupUsername">Name:</label>
-        <input type="text" id="signupUsername" name="signupUsername" required>
+        <input type="text" id="signupUsername" name="signupUsername" required [(ngModel)]="userName">
 
 		<label for="signupEmail">Email:</label>
-        <input type="text" id="signupEmail" name="signupEmail" required>
+        <input type="text" id="signupEmail" name="signupEmail" required [(ngModel)]="email">
 
         <label for="signupPassword">Password:</label>
-        <input type="password" id="signupPassword" name="signupPassword" required>
+        <input type="password" id="signupPassword" name="signupPassword" required [(ngModel)]="password">
 
         <button type="button" (click)="onSignUp()">Sign Up</button>
+        <div *ngIf="errorMessage" class="error-message"> {{ errorMessage }} </div>
     </form>
 
     <div class="switch">

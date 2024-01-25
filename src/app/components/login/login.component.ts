@@ -9,28 +9,40 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
   showSignup: boolean = false;
-  loginUsername: string = '';
-  loginPassword: string = '';
+  userName: string = '';
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
   constructor(private router: Router, private authService: AuthService) { }
 
   toggleForm() {
     this.showSignup = !this.showSignup;
+    this.errorMessage = '';
   }
 
   onLogin() {
-    this.authService.login(this.loginUsername, this.loginPassword).subscribe(
+    this.authService.login(this.email, this.password).subscribe(
       (loginResponse) => {
         this.router.navigate(['/dashboard']);
+        this.errorMessage = '';
       },
       (error) => {
         console.error('Login failed:', error);
+        this.errorMessage = 'Login failed. Please check your credentials.';
       }
     );
 }
-
-
   onSignUp() {
-    this.router.navigate(['/signUp']);
+    this.authService.signUp(this.userName, this.email, this.password).subscribe(
+      (loginResponse) => {
+        this.router.navigate(['/dashboard']);
+        this.errorMessage = '';
+      },
+      (error) => {
+        console.error('Signin failed:', error);
+        this.errorMessage = 'Signin failed. Email already exists.';
+      }
+    );
   }
 }
