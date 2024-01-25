@@ -24,7 +24,7 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.email, this.password).subscribe(
       (loginResponse) => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
         this.errorMessage = '';
       },
       (error) => {
@@ -36,7 +36,7 @@ export class LoginComponent {
   onSignUp() {
     this.authService.signUp(this.userName, this.email, this.password).subscribe(
       (loginResponse) => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
         this.errorMessage = '';
       },
       (error) => {
