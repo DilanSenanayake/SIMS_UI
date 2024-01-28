@@ -1,0 +1,16 @@
+<div class="add-student">
+  <button class="close-button" (click)="closePopup()">X</button>
+  <h1>Add Student</h1>
+  <form (ngSubmit)="addStudent()" #studentForm="ngForm">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" ngModel required [(ngModel)]="firstName">
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" ngModel required [(ngModel)]="lastName">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" ngModel required [(ngModel)]="email">
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

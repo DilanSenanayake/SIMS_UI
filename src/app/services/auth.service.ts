@@ -16,6 +16,16 @@ export class AuthService {
   }
   signUp(name: string, email: string, password: string): Observable<any> {
     const signUpCredentials = {name: name, email: email, password: password };
-    return this.http.post(this.apiUrl + 'signin', signUpCredentials)
+    return this.http.post(this.apiUrl + 'signin', signUpCredentials);
+  }
+  getStudents(): Observable<any> {
+    return this.http.get(this.apiUrl + 'students');
+  }
+  getCourses(): Observable<any> {
+    return this.http.get(this.apiUrl + 'courses');
+  }
+  addStudent(firstName: string, lastName: string, email:string): Observable<any> {
+    const student = { firstName: firstName, lastName: lastName, email:email };
+    return this.http.post(this.apiUrl + 'students', student);
   }
 }
