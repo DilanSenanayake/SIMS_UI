@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AddStudentComponent } from '../add-student/add-student.component';
 import { StudentService } from 'src/app/services/student.service';
 import { CourseService } from 'src/app/services/course.service';
+import { AddCourseComponent } from '../add-course/add-course.component';
 
 @Component({
   selector: 'app-home',
@@ -37,19 +38,17 @@ export class HomeComponent {
     });
   }
 
-  onAddStudent() {
-    this.openPopup();
-  }
-
   onAddCourse() {
-    this.router.navigate(['/addCourse']);
+    const dialogRef = this.dialog.open(AddCourseComponent, {
+      width: '400px',
+    });
   }
 
   onCloseAddStudentPopup() {
     this.isAddStudentPopupVisible = false;
   }
 
-  openPopup(): void {
+  onAddStudent(): void {
     const dialogRef = this.dialog.open(AddStudentComponent, {
       width: '400px',
     });

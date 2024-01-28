@@ -17,11 +17,17 @@ export class CourseService {
   updateCourses(courses: string[]) {
     this.coursesSource.next(courses);
   }
+
   getCourses(): Observable<any> {
     return this.http.get(this.apiUrl + 'courses').pipe(
       tap((response: any) => {
         this.updateCourses(response.data);
       })
     );
+  }
+
+  addCourse(courseName: string): Observable<any> {
+    const course = { courseName: courseName};
+    return this.http.post(this.apiUrl + 'courses', course);
   }
 }

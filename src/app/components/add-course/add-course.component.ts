@@ -2,20 +2,20 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { StudentService } from 'src/app/services/student.service';
+import { CourseService } from 'src/app/services/course.service';
+
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css']
+  selector: 'app-add-course',
+  templateUrl: './add-course.component.html',
+  styleUrls: ['./add-course.component.css']
 })
 
-export class AddStudentComponent {
-  firstName: string = '';
-  lastName: string = '';
-  email: string = '';
+
+export class AddCourseComponent {
+  courseName: string = '';
   
-  constructor(private router: Router, private dialogRef: MatDialogRef<AddStudentComponent>, private studentService: StudentService,
+  constructor(private router: Router, private dialogRef: MatDialogRef<AddCourseComponent>, private courseService: CourseService,
     private snackBar: MatSnackBar) {}
 
   closePopup(): void {
@@ -23,11 +23,11 @@ export class AddStudentComponent {
     this.dialogRef.close();
   }
 
-  addStudent(): void {
-    this.studentService.addStudent(this.firstName, this.lastName, this.email).subscribe(
+  addCourse(): void {
+    this.courseService.addCourse(this.courseName).subscribe(
       (response) => {
         this.showNotification('Success!', 'success');
-        this.studentService.getStudents().subscribe(
+        this.courseService.getCourses().subscribe(
           (response) => {
             this.router.navigate(['/home']);
           }
