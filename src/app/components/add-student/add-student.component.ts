@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-add-student',
@@ -16,19 +16,24 @@ export class AddStudentComponent {
   email: string = '';
   errorMessage:string = '';
   
-  constructor(private router: Router, private dialogRef: MatDialogRef<AddStudentComponent>, private authService: AuthService,
+  constructor(private router: Router, private dialogRef: MatDialogRef<AddStudentComponent>, private studentService: StudentService,
     private snackBar: MatSnackBar) {}
 
   closePopup(): void {
+    this.router.navigate(['/home']);
     this.dialogRef.close();
   }
 
   addStudent(): void {
-    this.authService.addStudent(this.firstName, this.lastName, this.email).subscribe(
+    this.studentService.addStudent(this.firstName, this.lastName, this.email).subscribe(
       (response) => {
         this.showNotification('Success!', 'success');
-        this.router.navigate(['/home']);
-        this.errorMessage = '';
+        this.studentService.getStudents().subscribe(
+          (response) => {
+            this.router.navigate(['/home']);
+            this.errorMessage = '';
+          }
+        ); 
       },
       (error) => {
         console.error(error);

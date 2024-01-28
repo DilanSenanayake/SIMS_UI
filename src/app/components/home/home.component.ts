@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddStudentComponent } from '../add-student/add-student.component';
+import { StudentService } from 'src/app/services/student.service';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-home',
@@ -14,19 +16,25 @@ export class HomeComponent {
   courses: string[] = [];
   isAddStudentPopupVisible = false;
 
-  constructor(private router: Router, private authService: AuthService, private dialog: MatDialog) { }
+  constructor(private router: Router, private authService: AuthService, 
+    private dialog: MatDialog, public studentService: StudentService,
+    public courseService: CourseService) { }
 
   ngOnInit() {
-    this.authService.getStudents().subscribe(
+    this.studentService.getStudents().subscribe(
       (response) => {
         this.students = response.data;
-      }
-    );
-    this.authService.getCourses().subscribe(
+      });
+    this.courseService.getCourses().subscribe(
       (response) => {
         this.courses = response.data;
-      }
-    );
+      });
+    this.studentService.students$.subscribe(students => {
+      this.students = students;
+    });
+    this.courseService.courses$.subscribe(courses => {
+      this.courses = courses;
+    });
   }
 
   onAddStudent() {
@@ -44,11 +52,6 @@ export class HomeComponent {
   openPopup(): void {
     const dialogRef = this.dialog.open(AddStudentComponent, {
       width: '400px',
-    });
-
-    // Optionally, you can subscribe to the afterClosed event to perform actions after the popup is closed
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The popup was closed with result:', result);
     });
   }
 }
