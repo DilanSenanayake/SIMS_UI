@@ -53,6 +53,10 @@ th {
     cursor: pointer;
 }
 
-.add-button:hover {
-    background-color: #45a049;
+.row-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }

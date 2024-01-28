@@ -24,7 +24,9 @@
               <tbody>
                 <tr *ngFor="let student of studentService.students$ | async; let i = index">
                   <td>{{ i + 1 }}</td>
-                  <td>{{ student }}</td>
+                  <td (click)="onStudent(student.studentId)">
+                    <button class="row-button">{{ student.firstName + " " + student.lastName }}</button>
+                  </td>
                 </tr>
               </tbody>
             </table>

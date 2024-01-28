@@ -12,6 +12,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EditStudentComponent } from './components/edit-student/edit-student.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginComponent,
     HomeComponent,
     AddStudentComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,
